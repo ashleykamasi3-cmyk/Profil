@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profil Ashley Vanesya Kamasi</title>
+  <style>
+    :root{
+      --bg-1: #e8fff4;
+      --bg-2: #dffaf0;
+      --card-bg: rgba(255,255,255,0.5);
+      --glass-border: rgba(255,255,255,0.6);
+      --accent: #2f8a63;
+      --text: #214633;
+      --muted: #6b7b70;
+      --glass-blur: 12px;
+      --radius-lg: 20px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 50%, #c9f4e4 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;
+    }
+
+    /* Header */
+    header{
+      padding:110px 20px 80px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      background: linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.18));
+      backdrop-filter: blur(var(--glass-blur));
+      border-bottom-left-radius: 56px;
+      border-bottom-right-radius: 56px;
+      box-shadow: 0 28px 60px rgba(20,60,40,0.12);
+    }
+
+    /* decorative bubbles */
+    header::before, header::after{
+      content:''; position:absolute; border-radius:50%; filter:blur(12px); opacity:0.85;
+    }
+    header::before{ width:300px;height:300px; left:-80px; top:-80px; background:rgba(255,255,255,0.45); transform:rotate(12deg); }
+    header::after{ width:260px;height:260px; right:-60px; bottom:-60px; background:rgba(255,255,255,0.30); }
+
+    h1{ margin:0; font-size:28px; font-weight:600; letter-spacing:1px; color:var(--text); }
+    h1 .nama{ display:block; font-size:44px; font-weight:800; letter-spacing:2px; margin-top:10px; }
+
+    /* primary button (lihat profile) */
+    .lihat-btn{
+      display:inline-block; margin-top:46px; padding:14px 34px; border-radius:40px; background:#fff; color:var(--accent);
+      text-decoration:none; font-weight:700; border:1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 8px 22px rgba(17,68,45,0.08); transition: transform .22s ease, box-shadow .22s, background .2s;
+    }
+    .lihat-btn:hover{ transform: translateY(-6px) scale(1.03); box-shadow: 0 18px 40px rgba(17,68,45,0.12); background:#f3fff8; }
+    .lihat-btn:active{ transform: translateY(-2px) scale(.99); }
+
+    /* layout */
+    .container{ max-width:980px; margin:36px auto; padding:0 20px; }
+
+    /* page2 */
+    .page2{ display:none; animation:fadeIn .5s ease both; position:relative; }
+    @keyframes fadeIn{ from{opacity:0; transform:translateY(18px)} to{opacity:1; transform:none} }
+
+    /* kembali button (styled like lihat-btn) */
+    .kembali-btn{ position:absolute; left:18px; top:18px; display:inline-block; padding:10px 16px; border-radius:12px; background:rgba(255,255,255,0.55);
+      backdrop-filter: blur(8px); color:var(--text); font-weight:700; text-decoration:none; box-shadow: 0 8px 20px rgba(17,68,45,0.06);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s; }
+    .kembali-btn:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(17,68,45,0.12); background: #f3fff8; }
+    .kembali-btn:active{ transform: translateY(-2px) scale(.98); }
+
+    /* title2 */
+    .title2{ text-align:center; margin-top:18px; margin-bottom:28px; }
+    .title2 h2{ margin:0; font-size:22px; color:var(--muted); font-weight:600 }
+    .title2 .nama-large{ display:block; font-size:40px; font-weight:800; margin-top:8px; color:var(--text); }
+
+    /* cards / accordion */
+    .card{ background:var(--card-bg); padding:22px; border-radius:var(--radius-lg); border:1px solid var(--glass-border);
+      box-shadow: 0 10px 26px rgba(20,60,40,0.06); margin-bottom:18px; transition: transform .26s ease, box-shadow .26s ease, background .26s; cursor:pointer; }
+    .card:hover{ transform: translateY(-6px); box-shadow: 0 20px 48px rgba(20,60,40,0.12); background: rgba(255,255,255,0.62); }
+    .card:active{ transform: translateY(-2px) scale(.995); }
+
+    .card .head{ display:flex; align-items:center; justify-content:space-between; }
+    .card .head h3{ margin:0; font-size:18px; color:var(--text); }
+    .card .head .chev{ font-size:14px; color:var(--muted); transition: transform .28s ease; }
+    .card.open .head .chev{ transform:rotate(-180deg); color:var(--accent); }
+
+    .card .body{ margin-top:14px; color:var(--muted); line-height:1.6; max-height:0; overflow:hidden; opacity:0; transition: max-height .42s ease, opacity .32s ease, margin .32s ease; }
+    .card.open .body{ max-height:600px; opacity:1; }
+
+    /* timeline inside Riwayat Pendidikan */
+    .timeline{ padding-left:0 !important; position:relative; }
+    ..timeline{position:relative; padding-left:25px;}
+.timeline::before{ display:none !important; }
+.timeline-item{position:relative; padding-bottom:25px;}
+.timeline-item .dot{
+ width:16px; height:16px;
+ background:#4caf50;
+ border-radius:50%;
+ position:absolute;
+ left:3px; top:0;
+ border:3px solid #eaffea;
+ box-shadow:0 3px 8px rgba(0,0,0,0.15);
+}
+    .t-item{ position:relative; padding-left:34px; margin-bottom:22px; }
+    .t-item .dot{ width:14px;height:14px;border-radius:50%;background:var(--accent); position:absolute; left:-2px; top:4px; box-shadow:0 4px 10px rgba(47,138,99,0.18); border:3px solid #e8fff4; }
+    .t-item small{ display:block; color:var(--muted); margin-top:6px; }
+
+    /* contact row styling */
+    .contact-row{ display:flex; gap:12px; align-items:center; }
+    .contact-icon{ width:40px; height:40px; display:inline-grid; place-items:center; border-radius:10px; background:rgba(47,138,99,0.12); color:var(--accent); font-size:18px; }
+
+    /* footer */
+    footer{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:24px 0;
+      margin:40px auto 20px;
+      color:var(--muted);
+      font-weight:600;
+      width:100%;
+    }
+
+    /* responsive */
+    @media (max-width:640px){ h1 .nama{ font-size:32px } .title2 .nama-large{ font-size:28px } .kembali-btn{ left:12px; top:12px }}
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1 -->
+  <div id="page1">
+    <header>
+      <h1>Profil<span class="nama">ASHLEY VANESYA KAMASI</span></h1>
+      <a class="lihat-btn" href="#" id="lihatBtn">Lihat Profil</a>
+    </header>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div id="page2" class="page2 container">
+    <a href="#" class="kembali-btn" id="kembaliBtn">← Kembali</a>
+
+    <div class="title2">
+      <h2>Profil<span class="nama-large">ASHLEY VANESYA KAMASI</span></h2>
+    </div>
+
+    <!-- Tentang Saya -->
+    <div class="card" data-key="tentang">
+      <div class="head">
+        <h3>Tentang Saya</h3>
+        <div class="chev">▼</div>
+      </div>
+      <div class="body">
+        Saya adalah Mahasiswa aktif Semester 1 Program Studi AGROTEKNOLOGI Fakultas PERTANIAN UNIVERSITAS SAM RATULANGI.
+      </div>
+    </div>
+
+    <!-- Riwayat Pendidikan -->
+    <div class="card" data-key="pendidikan">
+      <div class="head">
+        <h3>Riwayat Pendidikan</h3>
+        <div class="chev">▼</div>
+      </div>
+      <div class="body">
+        <div class="t-item"><div class="dot"></div> SD GMIM IMANUEL SENDANGAN <small>2013–2019</small></div>
+        <div class="t-item"><div class="dot"></div> SMP NEGERI 1 KAKAS <small>2019–2022</small></div>
+        <div class="t-item"><div class="dot"></div> SMA NEGERI 1 KAKAS <small>2022–2025</small></div>
+        <div class="t-item"><div class="dot"></div> UNIVERSITAS SAM RATULANGI <small>2025–Sekarang</small></div>
+      </div>
+    </div>
+
+    <!-- Kontak -->
+    <div class="card" data-key="kontak">
+      <div class="head">
+        <h3>Kontak</h3>
+        <div class="chev">▼</div>
+      </div>
+      <div class="body">
+        <div class="contact-row"><div class="contact-icon">📧</div> ashleykamasi038@student.unsrat.ac.id</div>
+        <br>
+        <div class="contact-row"><div class="contact-icon">📱</div> 089602680286</div>
+      </div>
+    </div>
+
+    <!-- Proyek -->
+    <div class="card" data-key="proyek">
+      <div class="head">
+        <h3>Proyek</h3>
+        <div class="chev">▼</div>
+      </div>
+      <div class="body">
+        <a href="https://ashleykamasi3-cmyk.github.io/DIAGNOSA-PENYAKIT-TANAMAN/#diagnosa" target="_blank" style="color:var(--accent); font-weight:600; text-decoration:none;">
+          🌿 Kunjungi Proyek Sistem Diagnosa Penyakit Tanaman
+        </a>
+      </div>
+    </div>
+
+    <footer>Profil Ashley Vanesya Kamasi</footer>
+  </div>
+
+  <script>
+    // page toggles
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+    const lihatBtn = document.getElementById('lihatBtn');
+    const kembaliBtn = document.getElementById('kembaliBtn');
+
+    lihatBtn.addEventListener('click', (e)=>{ e.preventDefault(); page1.style.display='none'; page2.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); });
+    kembaliBtn.addEventListener('click', (e)=>{ e.preventDefault(); page1.style.display='block'; page2.style.display='none'; window.scrollTo({top:0,behavior:'smooth'}); });
+
+    // accordion behavior — UPDATED (fix click not opening)
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card=>{
+      const head = card.querySelector('.head');
+
+      // Click anywhere on HEAD will toggle
+      head.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        cards.forEach(c=>{ if(c!==card) c.classList.remove('open'); });
+        card.classList.toggle('open');
+      });
+
+      // Also allow clicking anywhere on the card EXCEPT inside body
+      card.addEventListener('click', (e)=>{
+        if (e.target.tagName === "A") return;
+        if(e.target.closest('.body')) return; // don't toggle when clicking inside body
+        if(!e.target.closest('.head')){
+          cards.forEach(c=>{ if(c!==card) c.classList.remove('open'); });
+          card.classList.toggle('open');
+        }
+      });
+
+      // keyboard accessibility
+      head.tabIndex = 0;
+      head.addEventListener('keydown',(e)=>{
+        if(e.key === 'Enter' || e.key === ' '){ 
+          e.preventDefault();
+          cards.forEach(c=>{ if(c!==card) c.classList.remove('open'); });
+          card.classList.toggle('open'); 
+        }
+      });
+    });
+
+    // allow link inside card body to be fully clickable
+    document.querySelectorAll('.card .body a').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.stopPropagation();
+      });
+    });
+
+    // small enhancement: close other cards when opening one (optional, comment out to allow multiple)
+    // uncomment below to have only one open at a time
+    /* cards.forEach(card=>{
+      const head = card.querySelector('.head');
+      head.addEventListener('click', ()=>{
+        cards.forEach(c=>{ if(c!==card) c.classList.remove('open'); });
+        card.classList.toggle('open');
+      });
+    }); */
+  </script>
+</body>
+</html>
